@@ -128,8 +128,8 @@ footer {
 
 .weather-forecast {
   margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
+  color: black;
+  text-align: center;
 }
 
 .weather-forecast-date {
@@ -137,12 +137,8 @@ footer {
   opacity: 0.5;
 }
 
-.weather-forecast-temperature {
+.weather-forecast-temperatures {
   font-size: 13px;
-  text-align: center;
-  color: #000;
-  display: flex;
-  justify-content: center;
 }
 
 .weather-forecast-temperature-min {
