@@ -56,47 +56,47 @@ function handleSearchSubmit(event) {
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return days[date.getDay()];
 }
 
-function getWeatherForecast(city) {
-  let apiKey = "9350b84ao1ec86e0ba4t6f9791f5dabb]";
+function getForecast(city) {
+  let apiKey = "9350b84ao1ec86e0ba4t6f9791f5dabb";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showForecast);
+  axios(apiUrl).then(displayForecast);
 }
 
-function showForecast(response) {
-  console.log(response.data);
-
+function displayForecast(response) {
   let forecastHtml = "";
 
   response.data.daily.forEach(function (day, index) {
     if (index < 5) {
       forecastHtml =
         forecastHtml +
-        `<div class="weather-forecast-day">
-  <div class="weather-forecast-date">${formatDay(day.time)}</div>
-  <img src="${day.condition.icon_url}"class="weather-forecast-icon"/>
-    <div class="weather-forecast-temperatures">
-      <div class="weather-forecast-temperature-max">
-        <strong>${Math.round(day.temperature.maximum)}</strong>
+        `
+      <div class="weather-forecast-day">
+        <div class="weather-forecast-date">${formatDay(day.time)}</div>
+
+        <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
+        <div class="weather-forecast-temperatures">
+          <div class="weather-forecast-temperature">
+            <strong>${Math.round(day.temperature.maximum)}º</strong>
+          </div>
+          <div class="weather-forecast-temperature">${Math.round(
+            day.temperature.minimum
+          )}º</div>
+        </div>
       </div>
-      <div class="weather-forecast-temperature-min">${Math.round(
-        day.temperature.minimum
-      )}</div>
-    </div>
-  </div>
-   `;
+    `;
     }
   });
 
-  let dailyForecast = document.querySelector("#weather-forecast");
-  dailyForecast.innerHTML = forecastHtml;
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
 }
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searchCity("Paris");s
+searchCity("Paris");
