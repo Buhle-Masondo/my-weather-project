@@ -16,6 +16,11 @@ a {
   padding: 30px;
 }
 
+@media (max-width: 900px) {
+  .weather-app {
+    padding: 80px 20px;
+  }
+}
 header {
   border-bottom: 1px solid #f9f7fe;
   padding: 0 0 30px 0;
